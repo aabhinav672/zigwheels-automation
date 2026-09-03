@@ -1,0 +1,13 @@
+{
+  "popularBrands": ["Maruti Suzuki", "Hyundai", "Tata", "Mahindra", "Toyota"],
+  "comparison": {
+    "firstCar": "Maruti Suzuki Swift",
+    "secondCar": "Tata Altroz"
+  },
+  "budgetFilters": [
+    { "label": "Under 5 Lakh", "minLakh": 0, "maxLakh": 5 },
+    { "label": "5 to 10 Lakh", "minLakh": 5, "maxLakh": 10 },
+    { "label": "10 to 20 Lakh", "minLakh": 10, "maxLakh": 20 }
+  ],
+  "cities": ["Delhi", "Mumbai", "Bangalore", "Pune"]
+}

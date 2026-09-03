@@ -1,0 +1,21 @@
+.claude/
+node_modules/
+dist/
+reports/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+allure-results/
+allure-report/
+
+# environment secrets - only committed .env.example is allowed
+.env
+config/env/.env.*
+!config/env/.env.example
+
+*.log
+npm-debug.log*
+.DS_Store
+.idea/
+*.swp

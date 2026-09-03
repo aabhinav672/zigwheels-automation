@@ -1,0 +1,7 @@
+{
+  "searchScenarios": [
+    { "keyword": "Swift", "expectedSuggestion": "Swift" },
+    { "keyword": "Creta", "expectedSuggestion": "Creta" },
+    { "keyword": "Nexon", "expectedSuggestion": "Nexon" }
+  ]
+}
