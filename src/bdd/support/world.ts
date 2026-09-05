@@ -6,6 +6,7 @@ import { NewCarsPage } from '@pages/NewCarsPage';
 import { UsedCarsPage } from '@pages/UsedCarsPage';
 import { BikesPage } from '@pages/BikesPage';
 import { CompareCarsPage } from '@pages/CompareCarsPage';
+import { ExpertReviewsPage } from '@pages/ExpertReviewsPage';
 import { VehicleListingPage } from '@pages/base/VehicleListingPage';
 
 /** Any page object that exposes a heading, used by the generic heading-assertion step. */
@@ -29,6 +30,7 @@ export class CustomWorld extends World {
   usedCarsPage!: UsedCarsPage;
   bikesPage!: BikesPage;
   compareCarsPage!: CompareCarsPage;
+  expertReviewsPage!: ExpertReviewsPage;
 
   /** Set by whichever "I open/am on ..." step ran last, for generic assertion steps. */
   currentPage?: HeadedPage;
@@ -58,6 +60,7 @@ export class CustomWorld extends World {
     this.usedCarsPage = new UsedCarsPage(this.page);
     this.bikesPage = new BikesPage(this.page);
     this.compareCarsPage = new CompareCarsPage(this.page);
+    this.expertReviewsPage = new ExpertReviewsPage(this.page);
   }
 
   async dispose(): Promise<void> {

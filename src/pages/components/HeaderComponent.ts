@@ -15,6 +15,7 @@ export class HeaderComponent {
   private readonly newCarsLink: Locator;
   private readonly newBikesLink: Locator;
   private readonly usedCarsLink: Locator;
+  private readonly expertReviewsLink: Locator;
 
   constructor(page: Page) {
     this.root = page.locator('header').first();
@@ -24,6 +25,7 @@ export class HeaderComponent {
     this.newCarsLink = page.locator(`a[href="${Routes.NEW_CARS}"]`).first();
     this.newBikesLink = page.locator(`a[href="${Routes.NEW_BIKES}"]`).first();
     this.usedCarsLink = page.locator(`a[href="${Routes.USED_CARS}"]`).first();
+    this.expertReviewsLink = page.locator(`a[href="${Routes.EXPERT_REVIEWS}"]`).first();
   }
 
   async navLinkHrefs(): Promise<string[]> {
@@ -52,5 +54,9 @@ export class HeaderComponent {
 
   async goToUsedCars(): Promise<void> {
     await this.revealAndClick(this.usedCarsLink);
+  }
+
+  async goToExpertReviews(): Promise<void> {
+    await this.revealAndClick(this.expertReviewsLink);
   }
 }

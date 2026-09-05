@@ -6,6 +6,7 @@ export { NewCarsPage } from '@pages/NewCarsPage';
 export { UsedCarsPage } from '@pages/UsedCarsPage';
 export { BikesPage } from '@pages/BikesPage';
 export { CompareCarsPage } from '@pages/CompareCarsPage';
+export { ExpertReviewsPage } from '@pages/ExpertReviewsPage';
 export { HeaderComponent } from '@components/HeaderComponent';
 export { FooterComponent } from '@components/FooterComponent';
 export { SearchComponent } from '@components/SearchComponent';

@@ -35,6 +35,12 @@ When('I open the compare cars page', async function (this: CustomWorld) {
   this.currentPage = this.compareCarsPage;
 });
 
+When('I open the expert reviews page from the header', async function (this: CustomWorld) {
+  await this.homePage.header.goToExpertReviews();
+  await this.expertReviewsPage.waitUntilLoaded();
+  this.currentPage = this.expertReviewsPage;
+});
+
 Then(
   'the header navigation should link to {string}',
   async function (this: CustomWorld, href: string) {

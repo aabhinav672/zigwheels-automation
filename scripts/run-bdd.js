@@ -12,9 +12,44 @@
  *
  * Anything else passed after `--` (e.g. `--parallel 2`) is forwarded to
  * cucumber-js untouched.
+ *
+ * After a local (non-CI) run, the HTML report cucumber.js writes to
+ * reports/cucumber-report.html is opened in Chrome automatically.
  */
 
 const { spawnSync } = require('child_process');
+const fs = require('fs');
+const path = require('path');
+
+const REPORT_PATH = path.resolve(__dirname, '..', 'reports', 'cucumber-report.html');
+
+/** Opens the HTML report in Chrome, falling back to the OS default browser. */
+function openReport(reportPath) {
+  const url = `file://${reportPath}`;
+
+  const attempts =
+    process.platform === 'darwin'
+      ? [['open', ['-a', 'Google Chrome', url]], ['open', [url]]]
+      : process.platform === 'win32'
+        ? [
+            ['cmd', ['/c', 'start', '', 'chrome', url]],
+            ['cmd', ['/c', 'start', '', url]],
+          ]
+        : [
+            ['google-chrome', [url]],
+            ['xdg-open', [url]],
+          ];
+
+  const opened = attempts.some(
+    ([cmd, cmdArgs]) => spawnSync(cmd, cmdArgs, { stdio: 'ignore' }).status === 0,
+  );
+
+  if (opened) {
+    console.log(`[run-bdd] Opened HTML report: ${reportPath}`);
+  } else {
+    console.warn(`[run-bdd] Could not auto-open the report. View it at: ${reportPath}`);
+  }
+}
 
 const args = process.argv.slice(2);
 const tagFlagIndex = args.findIndex((arg) => arg === '--tag' || arg.startsWith('--tag='));
@@ -45,5 +80,9 @@ const result = spawnSync('npx', ['cucumber-js', ...cucumberArgs], {
   stdio: 'inherit',
   shell: process.platform === 'win32',
 });
+
+if (!process.env.CI && fs.existsSync(REPORT_PATH)) {
+  openReport(REPORT_PATH);
+}
 
 process.exit(result.status ?? 1);

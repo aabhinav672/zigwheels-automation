@@ -18,11 +18,14 @@ Then('slots 1 to 3 should be available', async function (this: CustomWorld) {
   }
 });
 
-Then("slot 2's brand list should match slot 1's brand list", async function (this: CustomWorld) {
-  const first = await this.compareCarsPage.availableMakes(1);
-  const second = await this.compareCarsPage.availableMakes(2);
-  expect(second).toEqual(first);
-});
+Then(
+  "slot {int}'s brand list should match slot 1's brand list",
+  async function (this: CustomWorld, slot: number) {
+    const first = await this.compareCarsPage.availableMakes(1);
+    const other = await this.compareCarsPage.availableMakes(slot);
+    expect(other).toEqual(first);
+  },
+);
 
 Then('slot 1 should offer more than 10 brands', async function (this: CustomWorld) {
   const first = await this.compareCarsPage.availableMakes(1);

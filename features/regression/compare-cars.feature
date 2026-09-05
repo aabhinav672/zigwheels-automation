@@ -14,8 +14,14 @@ Feature: Compare cars tool
   @compare-brand-list-consistency
   Scenario: Every slot offers the same populated brand list
     Then slot 1 should offer more than 10 brands
-    And slot 2's brand list should match slot 1's brand list
 
-  @compare-major-manufacturers
-  Scenario: Brand list contains the major manufacturers
-    Then slot 1's brand list should contain the major manufacturers
+  @compare-brand-list-consistency
+  Scenario Outline: Slot brand list matches slot 1's brand list
+    Then slot <slot>'s brand list should match slot 1's brand list
+
+    Examples:
+      | slot |
+      | 2    |
+      | 3    |
+
+  
